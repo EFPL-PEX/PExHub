@@ -262,21 +262,27 @@
 
   <script>
     // ======= CONFIG =======
-    const SUBMIT_API_URL = "https://script.google.com/a/macros/everestfleet.com/s/AKfycbyKWtDBgtS2MnmP7DnEloALHclWHXQcDRn25YZ6ZHIIZYurqDY1PrLLvhxUxnrUhQ_2/exec";
+    const SUBMIT_API_URL = "https://script.google.com/macros/s/AKfycbwZ2VVr6ZTvgWESaYQBGkZlABbe24I3om9LxSTJft5wPeW5dP-1KElsg_fCuv_0LsA/exec";
+     const departmentsList = [
+    "Marketing",
+    "Administration",
+    "Human Resources",
+    "Technology",
+    "Business Intelligence",
+    "Finance and Accounts",
+    "Recruitment",
+    "Training & Quality",
+    "Operations",
+    "Repair and Maintenance",
+    "Procurement",
+    "Process Excellence",
+    "Information Technology",
+    "Logistics",
+    "Learning & Development",
+    "Business Development & Sales"
+];
 
-    const departmentsList = [
-      "Marketing","Administration","Human Resources","Technology","Business Intelligence","Finance and Accounts","Recruitment","Training","Quality","Operations","Repair and Maintenance","Process Excellence","Information Technology","Logistics","Learning & Development","Business Development & Sales"
-    ];
-
-    const subBranches = {
-      'Mumbai': ['Thane','Chunnabhatti','Goregoan CNG','Vasai','Lower Parel','Kopar Khairane'],
-      'Pune': ['Hadapsar','BANER'],
-      'Kolkata': ['Taratala','Chetla','Nagarbazar'],
-      'Chennai': ['VANAGARAM'],
-      'Bangalore': ['Singasandra','Blr Electronic City','Bglr Whitefield','Airport - Begur'],
-      'Hyderabad': ['Damaigudda','Gachibowli'],
-      'Delhi': ['Delhi-Sukhrali','Delhi Tech Garden','Delhi Dwarka']
-    };
+   const subBranches = { 'Mumbai': ['Thane','Chunnabhatti','Goregoan CNG', 'Vasai', 'Lower Parel', 'Kopar Khairane'], 'Pune': ['Hadapsar','BANER'], 'Kolkata': ['Taratala','Chetla','Nagarbazar'], 'Chennai': ['VANAGARAM'], 'Bangalore': ['Singasandra', 'Blr Electronic City', 'Bglr Whitefield','Airport - Begur'], 'Hyderabad': ['Damaigudda', 'Gachibowli'], 'Delhi': ['Delhi-Sukhrali', 'Delhi Tech Garden', 'Delhi Dwarka'] };
 
     const METRICS = {
       Recruitment: [
