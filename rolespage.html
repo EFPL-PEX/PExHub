@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PExHub – Everest Fleet</title>
+
+  <!-- Professional font -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* reset & base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Lato', Arial, sans-serif;
+      background: #f4f6f8;
+      color: #333;
+      min-height: 100vh;
+      padding-top: 60px;    /* header height */
+      padding-bottom: 40px; /* footer height */
+      overflow-x: hidden;
+    }
+
+    /* header */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 10;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .nav-left .text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-left .text span {
+      font-size: 18px;
+      font-weight: 900;
+      color: #1a237e;
+    }
+    .nav-left img {
+      margin-left: 8px;
+      width: 60px;
+      height: auto;
+      background: none;
+    }
+    .center-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a237e;
+      pointer-events: none; /* so clicks pass through */
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+    .nav-right .user-name,
+    .nav-right .user-role {
+      margin: 0 10px;
+      font-size: 14px;
+      color: #555;
+      font-weight: 400;
+    }
+    .nav-right .avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #1976d2;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* popup */
+    #user-popup {
+      display: none;
+      position: absolute;
+      top: 60px; right: 20px;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 200px;
+      padding: 10px;
+      font-size: 14px;
+      z-index: 20;
+    }
+    .close-btn {
+      text-align: right;
+      cursor: pointer;
+      color: #999;
+      margin-bottom: 8px;
+    }
+    .info-row {
+      margin: 6px 0;
+      font-weight: 400;
+    }
+    .logout-btn {
+      width:100%; margin-top:8px; padding:6px;
+      background:#d32f2f; color:#fff; border:none; border-radius:4px;
+      cursor:pointer;
+    }
+
+    /* main content */
+    .main {
+      padding: 20px;
+      text-align: center;
+    }
+    .main h2 {
+      font-size: 32px;
+      color: #1a237e;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .main p.tagline {
+      font-size: 18px;
+      color: #1976d2;
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+
+    /* grid cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .card-header { height: 6px; }
+    .process .card-header { background: #2962ff; }
+    .learning .card-header { background: #2e7d32; }
+    .change .card-header { background: #8e24aa; }
+    .audit .card-header { background: #ef6c00; }
+    .track .card-header { background: #d32f2f; }
+    .card-body {
+      padding: 20px;
+      text-align: left;
+    }
+    .icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 700;
+    }
+    .card p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* footer */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 40px;
+      background: #fff;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      font-size: 14px;
+      color: #888;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <div class="topbar">
+    <div class="nav-left">
+      <div class="text">
+        <span>Everest</span>
+        <span>Fleet</span>
+      </div>
+      <img src="Everest.jpg" alt="Everest Logo" />
+    </div>
+    <div class="center-title">PExHub</div>
+    <div class="nav-right">
+      <span class="user-name" id="display-name">Loading...</span> |
+      <span class="user-role" id="display-role">Loading...</span>
+      <div class="avatar" onclick="togglePopup()">--</div>
+    </div>
+  </div>
+
+  <!-- User Popup -->
+  <div id="user-popup">
+    <div class="close-btn" onclick="togglePopup()">✖</div>
+    <div class="info-row"><strong>Name:</strong> <span id="user-name">Loading...</span></div>
+    <div class="info-row"><strong>ID:</strong>   <span id="user-id">Loading...</span></div>
+    <div class="info-row"><strong>Role:</strong> <span id="user-role">Loading...</span></div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <h2>Welcome to PexHub</h2>
+    <p class="tagline">Where you find Excellence in Process</p>
+
+    <div class="grid">
+      <div class="card process" onclick="location.href='functions.html'">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <div class="icon">📄</div>
+          <h3>Process Documents</h3>
+          <p>Access process documentation and SOPs</p>
+        </div>
+      </div>
+      <div class="card learning" onclick="location.href='learning.html'">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <div class="icon">🎓</div>
+          <h3>Learning</h3>
+          <p>Training materials and learning resources</p>
+        </div>
+      </div>
+      <div class="card change" onclick="location.href='document-options.html'">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <div class="icon">⚙️</div>
+          <h3>Change Management</h3>
+          <p>Raise a new document or change request</p>
+        </div>
+      </div>
+      <div class="card audit" onclick="location.href='Audit report&nc.html'">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <div class="icon">📝</div>
+          <h3>Audits & NCs</h3>
+          <p>Audit reports and non-conformance tracking</p>
+        </div>
+      </div>
+      <div class="card track" onclick="location.href='trackrequest.html'">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <div class="icon">🔍</div>
+          <h3>Track Your Request</h3>
+          <p>View request ID, date, and approval status</p> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+      Developed by process excellence team || Beta Version || ✉️ Process.excellence@everestfleet.com
+  </div>
+  
+  <script>
+    // --- Core Page Functions ---
+
+    // Function to display user info from localStorage
+    document.addEventListener("DOMContentLoaded", () => {
+      const employeeID = localStorage.getItem("employeeID");
+      const userRole = localStorage.getItem("userRole");
+      const employeeName = localStorage.getItem("employeeName");
+
+      // Security check: If any user detail is missing, force re-login.
+      if (!employeeID || !userRole || !employeeName) {
+        alert("Session expired or invalid. Please log in again.");
+        logout(); // a function that clears storage and redirects
+        return;
+      }
+
+      // Populate user details in the popup
+      document.getElementById("user-id").innerText = employeeID;
+      document.getElementById("user-role").innerText = userRole;
+      document.getElementById("user-name").innerText = employeeName;
+
+      // Populate user details in the top navigation bar
+      document.getElementById("display-role").innerText = userRole;
+      document.getElementById("display-name").innerText = employeeName;
+
+      // Create user avatar initials
+      const avatar = document.querySelector(".avatar");
+      if (employeeName) {
+        avatar.innerText = employeeName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+      }
+    });
+
+    // Toggle user info popup visibility
+    function togglePopup() {
+      const popup = document.getElementById("user-popup");
+      popup.style.display = (popup.style.display === "block") ? "none" : "block";
+    }
+
+    // --- Session Management ---
+
+    // Logout function: clear storage and redirect to login
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'index.html';
+    }
+
+    // Auto-logout after 30 minutes of inactivity
+    let logoutTimer;
+    const sessionTimeout = 30 * 60 * 1000; // 30 minutes in milliseconds
+
+    function resetSessionTimer() {
+      clearTimeout(logoutTimer);
+      logoutTimer = setTimeout(() => {
+        alert("Session expired due to inactivity. Please log in again.");
+        logout();
+      }, sessionTimeout);
+    }
+
+    // Reset the timer on user activity
+    window.onload = resetSessionTimer;
+    document.onmousemove = resetSessionTimer;
+    document.onkeypress = resetSessionTimer;
+    document.onclick = resetSessionTimer;
+  </script>
+
+</body>
+</html>
+
+
+
