@@ -100,14 +100,14 @@
   ];
 
   // Simulated Employee Role data (Replace with your API/Google Sheet)
-  /*const employeeData = {
+  const employeeData = {
     "EMP001": { name: "Altaf", department: "Operations", allowedSections: ["Operations", "Common Documents"] },
     "EMP002": { name: "Rahul", department: "Repairs", allowedSections: ["Repairs and Maintenance", "Common Documents"] },
     "EMP003": { name: "Priya", department: "Human Resources", allowedSections: ["Human Resources", "Common Documents"] },
     "EMP004": { name: "Vikram", department: "Admin", allowedSections: sections.map(s => s.name) }
   };
 
-  localStorage.setItem("employeeID", "EMP001");For demo/testing only*/
+  localStorage.setItem("employeeID", "EMP001");//For demo/testing only
 
   const employeeID = localStorage.getItem("employeeID");
   const currentUser = employeeData[employeeID];
@@ -138,5 +138,6 @@
 
 </body>
 </html>
+
 
 
