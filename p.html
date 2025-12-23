@@ -262,40 +262,42 @@
     function generateTicketNumber(department) { const prefix = 'EF-PRN'; const uniqueId = String(Date.now()).slice(-4); const now = new Date(); const day = String(now.getDate()).padStart(2, '0'); const month = String(now.getMonth() + 1).padStart(2, '0'); const year = now.getFullYear(); const datePart = `${day}${month}${year}`; const departmentPart = department.replace(/[\s&]+/g, ''); return `${prefix}${uniqueId}-${datePart}-${departmentPart}`; }
     function addEventListeners() { document.getElementById('prevBtn').addEventListener('click', () => { if (currentStep > 0) { currentStep--; updateStepDisplay(); } }); document.getElementById('nextBtn').addEventListener('click', () => { if (currentStep < totalSteps - 1 && validateStep(currentStep)) { currentStep++; updateStepDisplay(); } }); document.getElementById('processForm').addEventListener('submit', handleFormSubmit); document.getElementById('city').addEventListener('change', function() { const subBranch = document.getElementById('subBranch'); subBranch.innerHTML = '<option value="">Select sub branch</option>'; const branches = subBranches[this.value] || []; subBranch.disabled = branches.length === 0; branches.forEach(branch => subBranch.add(new Option(branch, branch))); }); const setupConditionalField = (selectId, inputId) => { document.getElementById(selectId).addEventListener('change', function() { const isOther = this.value === 'Other'; const input = document.getElementById(inputId); input.classList.toggle('hidden', !isOther); input.required = isOther; if (!isOther) input.value = ''; }); }; setupConditionalField('department', 'otherDepartment'); setupConditionalField('designation', 'otherDesignation'); const setupDocTypeField = (selectId, linkId, fileId) => { document.getElementById(selectId).addEventListener('change', function () { const isMainSelectRequired = this.hasAttribute('required'); const link = document.getElementById(linkId); const file = document.getElementById(fileId); const isLink = this.value === 'link'; const isUpload = this.value === 'upload'; link.classList.toggle('hidden', !isLink); link.required = isMainSelectRequired && isLink; file.classList.toggle('hidden', !isUpload); file.required = isMainSelectRequired && isUpload; if (!isLink) link.value = ''; if (!isUpload) file.value = ''; }); }; setupDocTypeField('draftDocType', 'draftDocLink', 'draftDocFile'); document.querySelectorAll('input, select, textarea').forEach(el => { el.addEventListener('input', updateButtonStates); el.addEventListener('change', updateButtonStates); }); }
 
-    function handleFormSubmit(e) {
-        e.preventDefault();
-        if (!validateStepsUpTo(totalSteps - 1)) { return; }
+   function handleFormSubmit(e) {
+    e.preventDefault();
+    if (!validateStepsUpTo(totalSteps - 1)) { return; }
 
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
 
-        const formData = collectFormData();
-        const ticketNumber = generateTicketNumber(formData.department);
-        
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxpYF7jlAhOEO6dPn6TzO4BUXq-5fsdr8RH6lImnUZHGc6t7XEIiwsM0f9DsK59pzA/exec';
-        
-        let fullUrl = scriptURL + "?callback=handleResponse";
-        fullUrl += "&ticketNumber=" + encodeURIComponent(ticketNumber);
-        
-        for (const key in formData) {
-            fullUrl += `&${encodeURIComponent(key)}=${encodeURIComponent(formData[key])}`;
-        }
-        
-        const redirectUrl = window.location.href.split('?')[0];
-        fullUrl += "&redirectUrl=" + encodeURIComponent(redirectUrl);
+    const formData = collectFormData();
+    const ticketNumber = generateTicketNumber(formData.department);
 
-        const script = document.createElement('script');
-        script.src = fullUrl;
-        document.body.appendChild(script);
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxpYF7jlAhOEO6dPn6TzO4BUXq-5fsdr8RH6lImnUZHGc6t7XEIiwsM0f9DsK59pzA/exec';
 
-        script.onerror = function() {
-            alert("Submission failed. The script could not be loaded. Please check the URL and your connection.");
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit Request';
-            document.body.removeChild(script);
-        };
+    let fullUrl = scriptURL + "?callback=ignoreCallback"; // keep callback for Apps Script
+    fullUrl += "&ticketNumber=" + encodeURIComponent(ticketNumber);
+
+    for (const key in formData) {
+        fullUrl += `&${encodeURIComponent(key)}=${encodeURIComponent(formData[key])}`;
     }
+
+    const redirectUrl = window.location.href.split('?')[0];
+    fullUrl += "&redirectUrl=" + encodeURIComponent(redirectUrl);
+
+    // Fire-and-forget submission (CORB safe)
+    const script = document.createElement('script');
+    script.src = fullUrl;
+    document.body.appendChild(script);
+
+    // ✅ Redirect immediately (do NOT wait for callback)
+    window.location.href =
+        redirectUrl +
+        "?status=success&ticketNumber=" +
+        encodeURIComponent(ticketNumber);
+}
+
+
 
     function handleResponse(response) {
         const scripts = document.querySelectorAll('script[src*="script.google.com"]');
@@ -314,5 +316,6 @@
 
 </body>
 </html>
+
 
 
