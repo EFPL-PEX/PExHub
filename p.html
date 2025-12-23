@@ -288,14 +288,16 @@
     // Fire-and-forget submission (CORB safe)
     const script = document.createElement('script');
     script.src = fullUrl;
-    document.body.appendChild(script);
+   document.body.appendChild(script);
 
-    // ✅ Redirect immediately (do NOT wait for callback)
+// ✅ Give the request time to reach Apps Script
+setTimeout(() => {
     window.location.href =
         redirectUrl +
         "?status=success&ticketNumber=" +
         encodeURIComponent(ticketNumber);
-}
+}, 800); // 600–1000ms is safe
+
 
 
 
@@ -316,6 +318,7 @@
 
 </body>
 </html>
+
 
 
 
