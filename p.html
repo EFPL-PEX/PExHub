@@ -273,7 +273,7 @@
         const formData = collectFormData();
         const ticketNumber = generateTicketNumber(formData.department);
         
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxpYF7jlAhOEO6dPn6TzO4BUXq-5fsdr8RH6lImnUZHGc6t7XEIiwsM0f9DsK59pzA/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwLPEBDW8FZ-PRwEU8mP6NHTK_BX8ZvcmGWEAdryQGULZszDYeyafYVWSOwmoYvGnI/exec';
         
         let fullUrl = scriptURL + "?callback=handleResponse";
         fullUrl += "&ticketNumber=" + encodeURIComponent(ticketNumber);
@@ -314,6 +314,7 @@
 
 </body>
 </html>
+
 
 
 
