@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TNQ</title>
+<style>
+  body { font-family: sans-serif; padding: 20px; background-color: #f9f9f9; position: relative; }
+  h2 { color: #133152; margin-bottom: 10px; }
+  .breadcrumb { font-size: 13px; color: gray; margin-bottom: 15px; }
+  .breadcrumb a { color: #007bff; text-decoration: none; margin-right: 5px; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  table { width: 100%; border-collapse: collapse; background-color: white; }
+  th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+  th { background-color: #133152; color: white; }
+  .view-btn {
+    padding: 6px 12px; background-color: #007bff; color: white;
+    border: none; border-radius: 4px; cursor: pointer;
+  }
+  .view-btn:hover { background-color: #0056b3; }
+  .doc-icon { margin-right: 8px; }
+  .nav-btn {
+    position: absolute; top: 10px; padding: 6px 12px; background-color: #133152; color: #fff; border: none; border-radius: 4px; cursor: pointer;
+  }
+  #back-btn { left: 10px; }
+  #home-btn { right: 10px; }
+</style>
+</head>
+<body>
+
+<button id="back-btn" class="nav-btn" onclick="history.back()">⬅ Back</button>
+<button id="home-btn" class="nav-btn" onclick="window.location.href='rolespage.html'">🏠 Home</button>
+
+<!--<div class="breadcrumb">
+  <a href="functions.html">Process Documents</a> >
+  <a href="t&q.html">TNQ</a> >
+  <a href="#">TNQ</a>
+</div>-->
+
+<h2>TNQ</h2>
+
+<table>
+  <thead>
+    <tr>
+  <td><img src="https://img.icons8.com/ios-filled/16/document.png" class="doc-icon">TNQ Activity Sheet-Mumbai </td>
+
+  <td><button class="view-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/186WfAfU7IQNMeqSJbNU57hEy2QvDNdzIduEcbQPUSQ0/edit?gid=1242149414#gid=1242149414','_blank')">View</button></td>
+</tr>
+<tr>
+  <td><img src="https://img.icons8.com/ios-filled/16/document.png" class="doc-icon">TNQ Activity Sheet-Hyderabad</td>
+ 
+  <td><button class="view-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/1noW58ccgPnIkmcxKfTCDcnPLpm2Rvl3PQ4HVAFdnNx4/edit?gid=0#gid=0','_blank')">View</button></td>
+</tr>
+<tr>
+  <td><img src="https://img.icons8.com/ios-filled/16/document.png" class="doc-icon">TNQ Activity Sheet-Pune</td>
+  <td><button class="view-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/1QrVf-1rj8mgHc3bu1dbCtEdyU4crVkkdexoXrxeDutY/edit?gid=1511910908#gid=1511910908','_blank')">View</button></td>
+</tr>
+<tr>
+  <td><img src="https://img.icons8.com/ios-filled/16/document.png" class="doc-icon">TNQ Activity Sheet-chennai</td>
+ 
+  <td><button class="view-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/1HfIdxA4iqqWrElLWNwfydVgPhh9ftZjesYGoszVmOGc/edit?gid=1511910908#gid=1511910908','_blank')">View</button></td>
+</tr>
+<tr>
+  <td><img src="https://img.icons8.com/ios-filled/16/document.png" class="doc-icon">TNQ Activity Sheet-Kolkata</td>
+ 
+  <td><button class="view-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/1APIwVqAp_XJQkinHQLHsJhT_p_XY_zoCWWK9DYPH7LM/edit?gid=1511910908#gid=1511910908','_blank')">View</button></td>
+</tr>
+<tr>
+  <td><img src="https://img.icons8.com/ios-filled/16/document.png" class="doc-icon">TNQ Activity Sheet-Bangalore</td>
+ 
+  <td><button class="view-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/1QUTOd5kHnIooVsr7xQsV_Fp6t-nFHr49DpazcBDRMMk/edit?gid=1511910908#gid=1511910908','_blank')">View</button></td>
+</tr>
+<tr>
+  <td><img src="https://img.icons8.com/ios-filled/16/document.png" class="doc-icon">TNQ Activity Sheet-Delhi</td>
+ 
+  <td><button class="view-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/19XrsQxqs6vqj9brHUSofKmRj05mqBTQxiw7M5nMyBuw/edit?gid=1511910908#gid=1511910908','_blank')">View</button></td>
+</tr>
+
+  </tbody>
+</table>
+
+</body>
+</html>
