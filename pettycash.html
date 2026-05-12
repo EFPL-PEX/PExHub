@@ -5,10 +5,7 @@
 
   <meta charset="UTF-8" />
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Petty Cash</title>
 
@@ -34,6 +31,7 @@
       margin-bottom: 30px;
     }
 
+    th,
     td {
       padding: 14px;
       border: 1px solid #ddd;
@@ -41,8 +39,12 @@
       font-size: 16px;
     }
 
-    .view-btn {
+    th {
+      background-color: #133152;
+      color: white;
+    }
 
+    .view-btn {
       padding: 7px 16px;
       background-color: #007bff;
       color: white;
@@ -50,7 +52,6 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 14px;
-
     }
 
     .view-btn:hover {
@@ -63,7 +64,6 @@
     }
 
     .nav-btn {
-
       position: absolute;
       top: 15px;
       padding: 7px 14px;
@@ -73,7 +73,6 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 14px;
-
     }
 
     #back-btn {
@@ -90,7 +89,6 @@
 
 <body>
 
-
   <!-- TOP BUTTONS -->
 
   <button
@@ -102,7 +100,6 @@
 
   </button>
 
-
   <button
     id="home-btn"
     class="nav-btn"
@@ -112,29 +109,38 @@
 
   </button>
 
+  <!-- PETTY CASH -->
 
   <h2>🚗 Petty Cash</h2>
 
   <table>
+
+    <thead>
+      <tr>
+        <th>Document Name</th>
+        <th>Level</th>
+        <th>Code</th>
+        <th>Action</th>
+      </tr>
+    </thead>
 
     <tbody>
 
       <tr>
 
         <td>
-
           <img
             src="https://img.icons8.com/ios-filled/16/document.png"
             class="doc-icon"
           >
-
           Petty Cash Process SOP
-
         </td>
 
-        <td width="120">
-          <td>L3</td>
-          <td>EFPL-ACC-PCP-L3-1.0</td>
+        <td>L3</td>
+
+        <td>EFPL-ACC-PCP-L3-1.0</td>
+
+        <td>
           <button
             class="view-btn"
             onclick="window.open(
@@ -145,29 +151,25 @@
             View
 
           </button>
-
         </td>
 
       </tr>
 
-
-
       <tr>
 
         <td>
-
           <img
             src="https://img.icons8.com/ios-filled/16/document.png"
             class="doc-icon"
           >
-
           Petty Cash - Dashboard & City Level View
-
         </td>
-         <td>L4</td>
-          <td>Petty Cash</td>
-        <td>
 
+        <td>L4</td>
+
+        <td>Petty Cash</td>
+
+        <td>
           <button
             class="view-btn"
             onclick="window.open(
@@ -178,29 +180,25 @@
             View
 
           </button>
-
         </td>
 
       </tr>
 
-
-
       <tr>
 
         <td>
-
           <img
             src="https://img.icons8.com/ios-filled/16/document.png"
             class="doc-icon"
           >
-
           Petty Cash Reimbursement Request Form
-
         </td>
-        <td>L4</td>
-          <td>Petty Cash</td>
-        <td>
 
+        <td>L4</td>
+
+        <td>Petty Cash</td>
+
+        <td>
           <button
             class="view-btn"
             onclick="window.open(
@@ -211,29 +209,25 @@
             View
 
           </button>
-
         </td>
 
       </tr>
 
-
-
       <tr>
 
         <td>
-
           <img
             src="https://img.icons8.com/ios-filled/16/document.png"
             class="doc-icon"
           >
-
           Petty Cash Advance or Cashfree Request
-
         </td>
-<td>L4</td>
-          <td>Petty Cash</td>
-        <td>
 
+        <td>L4</td>
+
+        <td>Petty Cash</td>
+
+        <td>
           <button
             class="view-btn"
             onclick="window.open(
@@ -244,26 +238,25 @@
             View
 
           </button>
-
         </td>
 
       </tr>
-    <tr>
+
+      <tr>
 
         <td>
-
           <img
             src="https://img.icons8.com/ios-filled/16/document.png"
             class="doc-icon"
           >
-
-         Petty Cash Pan India New (Forms)
-
+          Petty Cash Pan India New (Forms)
         </td>
-<td>L4</td>
-          <td>Petty Cash</td>
-        <td>
 
+        <td>L4</td>
+
+        <td>Petty Cash</td>
+
+        <td>
           <button
             class="view-btn"
             onclick="window.open(
@@ -274,43 +267,46 @@
             View
 
           </button>
-
         </td>
 
       </tr>
-
 
     </tbody>
 
   </table>
 
-
-
-  <!-- ======================= -->
   <!-- PETROL SECTION -->
-  <!-- ======================= -->
 
   <h2>⛽ Petrol</h2>
 
   <table>
+
+    <thead>
+      <tr>
+        <th>Document Name</th>
+        <th>Level</th>
+        <th>Code</th>
+        <th>Action</th>
+      </tr>
+    </thead>
 
     <tbody>
 
       <tr>
 
         <td>
-
           <img
             src="https://img.icons8.com/ios-filled/16/document.png"
             class="doc-icon"
           >
-
           Petrol Dash(Adhoc)
-
         </td>
 
-        <td width="120">
+        <td>-</td>
 
+        <td>-</td>
+
+        <td>
           <button
             class="view-btn"
             onclick="window.open(
@@ -321,25 +317,25 @@
             View
 
           </button>
-
         </td>
 
       </tr>
-        <tr>
+
+      <tr>
 
         <td>
-
           <img
             src="https://img.icons8.com/ios-filled/16/document.png"
             class="doc-icon"
           >
-
           Petrol Dashboard(2026)
-
         </td>
 
-        <td width="120">
+        <td>-</td>
 
+        <td>-</td>
+
+        <td>
           <button
             class="view-btn"
             onclick="window.open(
@@ -350,26 +346,25 @@
             View
 
           </button>
-
         </td>
 
       </tr>
 
-         <tr>
+      <tr>
 
         <td>
-
           <img
             src="https://img.icons8.com/ios-filled/16/document.png"
             class="doc-icon"
           >
-
           Top-up Tracker (Finance)
-
         </td>
 
-        <td width="120">
+        <td>-</td>
 
+        <td>-</td>
+
+        <td>
           <button
             class="view-btn"
             onclick="window.open(
@@ -380,7 +375,6 @@
             View
 
           </button>
-
         </td>
 
       </tr>
